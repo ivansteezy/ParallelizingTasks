@@ -242,16 +242,16 @@ public class Window extends JFrame
     {
         isServerRadioButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if(isServerRadioButton.isSelected())
-                {
-                    clientIpTextField.setEditable(false);
-                    searchParallelButton.setEnabled(true);
-                }
-                else
-                {
-                    clientIpTextField.setEditable(true);
-                    searchParallelButton.setEnabled(false);
-                }
+                // if(isServerRadioButton.isSelected())
+                // {
+                //     clientIpTextField.setEditable(false);
+                //     searchParallelButton.setEnabled(true);
+                // }
+                // else
+                // {
+                //     clientIpTextField.setEditable(true);
+                //     searchParallelButton.setEnabled(false);
+                // }
             }
         });
     }
