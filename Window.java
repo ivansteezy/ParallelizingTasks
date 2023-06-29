@@ -205,14 +205,22 @@ public class Window extends JFrame
         searchParallelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // rise server
-                try 
+                if(isServerRadioButton.isSelected())
                 {
-                    Server s;
-                    s = new Server("1234");
-                    s.StartServer();
-                } catch (RemoteException e1) 
+                    try 
+                    {
+                        Server s = new Server("1234");
+                        s.StartServer();
+                    } catch (RemoteException e1) 
+                    {
+                        e1.printStackTrace();
+                    }
+                }
+                else
                 {
-                    e1.printStackTrace();
+                    // start client
+                    Client c = new Client(GetServerIp(), "1234");
+                    c.StartClient();
                 }
             }
         });

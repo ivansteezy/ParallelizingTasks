@@ -1,10 +1,16 @@
 public class Client 
 {
-    public static void main(String[] args) 
+    public Client(String ip, String port)
+    {
+        mIp = ip;
+        mPort = port;
+    }
+    
+    public void StartClient()
     {
         try 
         {
-            RemoteInterface mir = (RemoteInterface)java.rmi.Naming.lookup("//" + "192.168.50.25" + ":" + "1234" + "/Syro");
+            RemoteInterface mir = (RemoteInterface)java.rmi.Naming.lookup("//" + mIp + ":" + mPort + "/Syro");
             System.out.println("Number: " + mir.GetCount());
         } 
         catch (Exception e) 
@@ -13,4 +19,6 @@ public class Client
         }
     }
     
+    String mIp;
+    String mPort;
 }
