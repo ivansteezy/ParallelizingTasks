@@ -16,7 +16,7 @@ public class FilePicker
 {
     FilePicker(Component frame)
     {
-        JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser("./");
         int option = fileChooser.showOpenDialog(frame);
 
         if (option == JFileChooser.APPROVE_OPTION) 
