@@ -218,9 +218,21 @@ public class Window extends JFrame
                 }
                 else
                 {
-                    // start client
-                    Client c = new Client(GetServerIp(), "1234");
-                    c.StartClient();
+                    // start one thread for local calculations and one thread for remote calculations
+                    try 
+                    {
+                        FilePicker fp = new FilePicker(Window.this);
+                        String fileContent = new String();
+                        fileContent = fp.ReadFile();
+                        ParallelCounter pc = new ParallelCounter("", "", 2, fileContent, "the");
+                        pc.Search();
+
+                        System.out.println("------------------FINAL PARALLEL RESULTS---------------");
+                    } 
+                    catch (InterruptedException | IOException e1) 
+                    {
+                        e1.printStackTrace();
+                    }
                 }
             }
         });

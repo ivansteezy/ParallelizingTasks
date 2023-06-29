@@ -1,10 +1,6 @@
 import java.net.MalformedURLException;
 import java.net.UnknownHostException;
-import java.rmi.AlreadyBoundException;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 // this class will be running always, the sequencial/concurrent demo would be in the client app and 
@@ -17,9 +13,20 @@ public class Server extends UnicastRemoteObject implements RemoteInterface
     }
 
     @Override
-    public long GetCount() throws RemoteException 
+    public long GetCount(String[] array, String wordToFind) throws RemoteException 
     {
-        return 42;
+        System.out.println("Numero de palabras a contar en el Server" + array.length);
+        long count = 0;
+        for(int i = 0; i < array.length; i++)
+        {
+            if(wordToFind.equals(array[i]))
+            {
+                count++;
+            }
+        }
+
+        System.out.println("El numero de ocurrencias que el servidor conto es: " + count);
+        return count;
     }
 
     public void StartServer()

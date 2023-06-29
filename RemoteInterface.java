@@ -5,5 +5,5 @@ import java.rmi.RemoteException;
 public interface RemoteInterface extends Remote
 {
     // public void SearchForWord(String[] arrayTocount, String wordToFind) throws RemoteException;
-    public long GetCount() throws RemoteException;
+    public long GetCount(String[] array, String wordToFind) throws RemoteException;
 }

@@ -1,26 +1,35 @@
-public class Client implements Runnable
+public class RemoteCallThread implements Runnable
 {
-    public Client(String ip, String port)
+    RemoteCallThread(String ip, String port, String[] arrayToSearch, String wordToFind)
     {
         mIp = ip;
         mPort = port;
+        mArray = arrayToSearch;
+        mWordToFind = wordToFind;
     }
-    
+
     @Override
     public void run()
     {
         try 
         {
             RemoteInterface mir = (RemoteInterface)java.rmi.Naming.lookup("//" + mIp + ":" + mPort + "/Syro");
-            mCount = mir.GetCount();
+            mCount = mir.GetCount(mArray, mWordToFind);
         } 
         catch (Exception e) 
         {
             e.printStackTrace();
         }
     }
+
+    public long GetCount()
+    {
+        return mCount;
+    }
     
     String mIp;
     String mPort;
     long mCount;
+    String[] mArray;
+    String mWordToFind;
 }
