@@ -146,14 +146,32 @@ public class Window extends JFrame
                     e1.printStackTrace();
                 }
                 // found sequencial number o occurences
-
-
             }
         });
 
         concurrentFilePickerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // do something
+                FilePicker fp = new FilePicker(Window.this);
+                String fileContent = new String();
+
+                try 
+                {
+                    fileContent = fp.ReadFile();
+                    int numberOfThreads = Integer.parseInt(numberOfThreadsConcurrentTextField.getText());
+                    ConcurrentCounter cc = new ConcurrentCounter(numberOfThreads, fileContent, "the");
+                    cc.Search();
+
+                    // durationSequencialLabel.setText(durationSequencialLabel.getText() + sc.GetDurationAsString() + "ns");
+                    // numberOfWordsSequencialLabel.setText(numberOfWordsSequencialLabel.getText() + sc.GetNumberOfFindsAsString());
+                }
+                catch (IOException e1) 
+                {
+                    e1.printStackTrace();
+                } 
+                catch (InterruptedException e1) 
+                {
+                    e1.printStackTrace();
+                }
             }
         });
 
