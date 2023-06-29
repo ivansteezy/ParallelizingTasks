@@ -1,3 +1,5 @@
+import java.net.MalformedURLException;
+import java.net.UnknownHostException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -5,11 +7,13 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+// this class will be running always, the sequencial/concurrent demo would be in the client app and 
 public class Server extends UnicastRemoteObject implements RemoteInterface
 {
-    protected Server() throws RemoteException 
+    protected Server(String port) throws RemoteException 
     {
         super();
+        mPort = port;
     }
 
     @Override
@@ -18,17 +22,16 @@ public class Server extends UnicastRemoteObject implements RemoteInterface
         return 42;
     }
 
-    public static void main(String[] args) 
+    public void StartServer()
     {
-        try
+        try 
         {
-            RemoteInterface s = new Server();
-            java.rmi.Naming.rebind("//" + java.net.InetAddress.getLocalHost().getHostAddress() + ":" + args[0] + "/Syro", s); // port passed by args
+            java.rmi.Naming.rebind("//" + java.net.InetAddress.getLocalHost().getHostAddress() + ":" + mPort + "/Syro", this);
             System.out.println("El servidor esta arriba con la ip: " + java.net.InetAddress.getLocalHost().getHostAddress());
-        }
-        catch(Exception e)
-        {
-            e.getStackTrace();
+        } catch (RemoteException | MalformedURLException | UnknownHostException e) {
+            e.printStackTrace();
         }
     }
+
+    String mPort;
 }

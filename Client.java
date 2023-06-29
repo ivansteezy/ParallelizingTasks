@@ -4,7 +4,7 @@ public class Client
     {
         try 
         {
-            RemoteInterface mir = (RemoteInterface)java.rmi.Naming.lookup("//" + args[0] + ":" + args[1] + "/Syro");
+            RemoteInterface mir = (RemoteInterface)java.rmi.Naming.lookup("//" + "192.168.50.25" + ":" + "1234" + "/Syro");
             System.out.println("Number: " + mir.GetCount());
         } 
         catch (Exception e) 

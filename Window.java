@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Console;
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 public class Window extends JFrame
 {
@@ -72,7 +73,7 @@ public class Window extends JFrame
         serverIpTextField = new JTextField ("Server ip", 5);
         clientIpTextField = new JTextField ("Client ip", 5);
         wordToFindParallelTextField = new JTextField ("the", 5); // parallel filepicker button
-        searchParallelButton = new JButton ("Buscar"); // buscar paralelo
+        searchParallelButton = new JButton ("Start!"); // buscar paralelo
 
 
         //add components
@@ -203,7 +204,16 @@ public class Window extends JFrame
 
         searchParallelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // do something
+                // rise server
+                try 
+                {
+                    Server s;
+                    s = new Server("1234");
+                    s.StartServer();
+                } catch (RemoteException e1) 
+                {
+                    e1.printStackTrace();
+                }
             }
         });
     }
@@ -215,10 +225,12 @@ public class Window extends JFrame
                 if(isServerRadioButton.isSelected())
                 {
                     clientIpTextField.setEditable(false);
+                    searchParallelButton.setEnabled(true);
                 }
                 else
                 {
                     clientIpTextField.setEditable(true);
+                    searchParallelButton.setEnabled(false);
                 }
             }
         });
