@@ -53,5 +53,4 @@ public class SequencialCounter
     private String mStringToCount;
     private String mWordToFind;
     private long mTimeElapsed;
-
 }

@@ -12,6 +12,7 @@ public class ConcurrentCounter
         mStringToCount = stringToCount;
         mWordToFind = wordToFind;
         mCount = 0;
+        mTimeElapsed = 0;
     }
 
     ArrayList<String[]> SplitArrayIntoChunks()
@@ -33,31 +34,41 @@ public class ConcurrentCounter
     public void Search() throws InterruptedException
     {
         var smallerArrays = SplitArrayIntoChunks();
-
-        Thread[] pool = new Thread[mNumberOfThreads]; // 3
-        long mTimeElapsed = 0;
+        Thread[] pool = new Thread[mNumberOfThreads];
+        
         System.out.println("About to search!");
         long startTime = System.nanoTime();
 
         // definimos la tarea que hara cada uno de los 3 threads
         for(int i = 0; i < pool.length; i++)
         {
-            CounterThread ct = new CounterThread(smallerArrays.get(i), "the");
+            CounterThread ct = new CounterThread(smallerArrays.get(i), mWordToFind);
             Thread t = new Thread(ct);
             t.start();
             t.join();
             mCount += ct.GetValue();
         }
-        // System.out.println("LA CUENTA ES: " + mCount);
+        System.out.println("LA CUENTA ES: " + mCount);
 
         long stopTime = System.nanoTime();
         mTimeElapsed = stopTime - startTime;
-        // System.out.println("TIEMPO QUE PASO: " + mTimeElapsed);
+        System.out.println("TIEMPO QUE PASO: " + mTimeElapsed);
+    }
+
+    public String GetNumberOfFindsAsString()
+    {
+        return Long.toString(mCount);
+    }
+
+    public String GetDurationAsString()
+    {
+        return Long.toString(mTimeElapsed);
     }
     
 
     private int mNumberOfThreads;
     private String mStringToCount;
     private String mWordToFind;
-    private int mCount;
+    private long mCount;
+    private long mTimeElapsed;
 }

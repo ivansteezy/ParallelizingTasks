@@ -1,6 +1,6 @@
 public class CounterThread implements Runnable 
 {
-    private volatile int value;
+    private volatile long value;
 
     CounterThread(String[] arrayToCount, String wordToFind)
     {
@@ -24,7 +24,7 @@ public class CounterThread implements Runnable
         System.out.println("El numero de ocurrencias es: " + value);
     }
 
-    public int GetValue()
+    public long GetValue()
     {
         return value;
     }

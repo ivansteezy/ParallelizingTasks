@@ -111,8 +111,8 @@ public class Window extends JFrame
         durationSequencialLabel.setBounds (20, 160, 200, 35);
         wordToFindSequencialTextField.setBounds (15, 200, 120, 30);
         searchSequencialButton.setBounds (15, 240, 120, 30);
-        numberOfWordsConcurrentLabel.setBounds (215, 140, 100, 25);
-        durationConcurrentLabel.setBounds (215, 165, 100, 25);
+        numberOfWordsConcurrentLabel.setBounds (215, 140, 200, 25);
+        durationConcurrentLabel.setBounds (215, 165, 200, 25);
         wordToFindConcurrentTextField.setBounds (210, 200, 120, 30);
         searchConcurrentButton.setBounds (210, 240, 120, 30);
         wordToFindParallelTextField.setBounds (410, 200, 130, 30);
@@ -161,8 +161,8 @@ public class Window extends JFrame
                     ConcurrentCounter cc = new ConcurrentCounter(numberOfThreads, fileContent, "the");
                     cc.Search();
 
-                    // durationSequencialLabel.setText(durationSequencialLabel.getText() + sc.GetDurationAsString() + "ns");
-                    // numberOfWordsSequencialLabel.setText(numberOfWordsSequencialLabel.getText() + sc.GetNumberOfFindsAsString());
+                    durationConcurrentLabel.setText(durationConcurrentLabel.getText() + cc.GetDurationAsString() + "ns");
+                    numberOfWordsConcurrentLabel.setText(numberOfWordsConcurrentLabel.getText() + cc.GetNumberOfFindsAsString());
                 }
                 catch (IOException e1) 
                 {
