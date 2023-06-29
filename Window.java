@@ -138,14 +138,16 @@ public class Window extends JFrame
                     SequencialCounter sc = new SequencialCounter(fileContent, GetSequencialWordToSearch());
                     sc.Search();
 
-                    durationSequencialLabel.setText(durationSequencialLabel.getText() + sc.GetDurationAsString() + "ns");
-                    numberOfWordsSequencialLabel.setText(numberOfWordsSequencialLabel.getText() + sc.GetNumberOfFindsAsString());
+                    durationSequencialLabel.setText(" ");
+                    durationSequencialLabel.setText("Tiempo: " + sc.GetDurationAsString() + "ns");
+
+                    numberOfWordsSequencialLabel.setText(" ");
+                    numberOfWordsSequencialLabel.setText("Cantidad: " + sc.GetNumberOfFindsAsString());
                 }
                 catch (IOException e1) 
                 {
                     e1.printStackTrace();
                 }
-                // found sequencial number o occurences
             }
         });
 
@@ -161,8 +163,11 @@ public class Window extends JFrame
                     ConcurrentCounter cc = new ConcurrentCounter(numberOfThreads, fileContent, "the");
                     cc.Search();
 
-                    durationConcurrentLabel.setText(durationConcurrentLabel.getText() + cc.GetDurationAsString() + "ns");
-                    numberOfWordsConcurrentLabel.setText(numberOfWordsConcurrentLabel.getText() + cc.GetNumberOfFindsAsString());
+                    durationConcurrentLabel.setText(" ");
+                    durationConcurrentLabel.setText("Tiempo: " + cc.GetDurationAsString() + "ns");
+
+                    numberOfWordsConcurrentLabel.setText(" ");
+                    numberOfWordsConcurrentLabel.setText("Cantidad: " + cc.GetNumberOfFindsAsString());
                 }
                 catch (IOException e1) 
                 {
